@@ -1,0 +1,6 @@
+PASAR AT FARM 2 — KEUANGAN PENJUALAN
+1. APPS SCRIPT: ganti HANYA APPS_SCRIPT/Index.html kemudian Deploy > Manage deployments > Edit > New version > Deploy.
+2. GITHUB PAGES: upload isi folder at-farm-pwa (index.html, config.js, manifest.webmanifest, sw.js, kedua ikon) pada repository KHUSUS PASAR AT FARM 2. Akses alamat github.io HTTPS, bukan script.google.com /exec.
+3. Android Chrome: dari GitHub Pages, bila Chrome memenuhi syarat instal, tombol "Instal Aplikasi" tampil. Bila tidak, pilih menu titik tiga Chrome > Instal aplikasi / Tambahkan ke layar utama. PWA yang sudah terpasang mungkin tidak menawarkan pemasangan lagi.
+4. Warna teks "Kosongkan Keranjang" menjadi hitam pada Kasir. Backend Code.gs tidak diubah. Tema AT Clean Light dipertahankan.
+5. Browser/perangkat belum diuji; instalasi PWA bergantung syarat Chrome dan hosting. Tidak ada APK dalam ZIP ini.

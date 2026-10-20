@@ -3,29 +3,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-  <meta name="theme-color" content="#101828">
+  <meta name="theme-color" content="#f4f7fc">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="PASAR AT FARM 2">
   <title>PASAR AT FARM 2 - Keuangan</title>
-  <link rel="manifest" href="./manifest.webmanifest?v=2.01">
-  <link rel="icon" href="./icon-192.png?v=2.01">
-  <link rel="apple-touch-icon" href="./icon-192.png?v=2.01">
+  <link rel="manifest" href="./manifest.webmanifest?v=2.02">
+  <link rel="icon" href="./icon-192.png?v=2.02">
+  <link rel="apple-touch-icon" href="./icon-192.png?v=2.02">
   <style>
     *{box-sizing:border-box}
     html,body{margin:0!important;padding:0!important;width:100%;height:100%;overflow:hidden;background:#fff}
     #atfarm-root{position:fixed;inset:0;width:100vw;height:100dvh;margin:0;padding:0;overflow:hidden;background:#fff}
     #atfarm-frame{display:block;width:100%;height:100%;margin:0;padding:0;border:0;background:#fff}
     .setup{font-family:Arial,sans-serif;padding:24px;color:#173b28}
+    #installControls{position:fixed;z-index:10;top:12px;right:12px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;font:12px system-ui,sans-serif}
+    #installBtn{display:none;border:0;border-radius:10px;padding:10px 14px;background:#2563eb;color:#fff;font-weight:700;box-shadow:0 4px 14px #183d7e55;cursor:pointer}
+    #installHelp{display:none;max-width:280px;padding:10px;border:1px solid #d6e3f4;border-radius:10px;background:#fff;color:#183153;box-shadow:0 4px 16px #15284920}
+    #installHelpBtn{border:1px solid #d6e3f4;background:#fff;color:#17345a;border-radius:8px;cursor:pointer;padding:6px 10px}
+    @media(display-mode:standalone){#installControls{display:none}}
   </style>
 </head>
 <body>
   <main id="atfarm-root"></main>
-  <script src="./config.js?v=2.01"></script>
+  <div id="installControls">
+    <button id="installBtn" type="button">📲 Instal Aplikasi</button>
+    <button id="installHelpBtn" type="button" aria-expanded="false">Cara instal</button>
+    <div id="installHelp" role="status">Buka alamat <b>GitHub Pages</b> ini langsung di Chrome Android melalui HTTPS. Jika pilihan instal tidak muncul, buka menu Chrome (⋮) lalu pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>. Jangan gunakan alamat Apps Script /exec sebagai halaman instalasi. Periksa izin serta cache browser bila perlu.</div>
+  </div>
+  <script src="./config.js?v=2.02"></script>
   <script>
   (() => {
     const root = document.getElementById('atfarm-root');
+    let deferredInstallPrompt = null;
+    const installBtn = document.getElementById('installBtn');
+    const helpBtn = document.getElementById('installHelpBtn');
+    const help = document.getElementById('installHelp');
+    helpBtn.addEventListener('click', () => {
+      const next = help.style.display !== 'block';
+      help.style.display = next ? 'block' : 'none';
+      helpBtn.setAttribute('aria-expanded', String(next));
+    });
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      installBtn.style.display = 'inline-block';
+    });
+    installBtn.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      const prompt = deferredInstallPrompt;
+      deferredInstallPrompt = null;
+      installBtn.style.display = 'none';
+      await prompt.prompt();
+    });
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      installBtn.style.display = 'none';
+      helpBtn.style.display = 'none';
+      help.style.display = 'none';
+    });
     const url = window.AT_FARM_WEB_APP_URL || '';
     if (!url) {
       root.innerHTML = '<div class="setup"><h2>PASAR AT FARM 2</h2><p>URL Web App belum diatur.</p></div>';
@@ -41,7 +78,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', async () => {
         try {
-          const reg = await navigator.serviceWorker.register('./sw.js?v=2.01', {scope:'./', updateViaCache:'none'});
+          const reg = await navigator.serviceWorker.register('./sw.js?v=2.02', {scope:'./', updateViaCache:'none'});
           await reg.update();
         } catch (err) { console.error(err); }
       });

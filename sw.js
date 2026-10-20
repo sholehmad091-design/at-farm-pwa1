@@ -1,4 +1,4 @@
-const CACHE = 'pasar-at-farm-2-keuangan-v2-01';
+const CACHE = 'pasar-at-farm-2-keuangan-v2-02';
 const ASSETS = ['./', './index.html', './config.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
