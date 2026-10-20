@@ -1,0 +1,18 @@
+PASAR AT FARM 2 - KEUANGAN_PENJUALAN | PWA INSTALL FIX v2.01
+
+PENTING: Ini PWA (aplikasi yang di-install dari Chrome), BUKAN file APK.
+Jangan upload folder APPS_SCRIPT ke GitHub Pages sebagai aplikasi depan.
+
+CARA MEMASANG TANPA MENGGANGGU APLIKASI LAMA
+1. Buat REPOSITORY GITHUB BARU, contohnya pasar-at-farm-2-keuangan. Jangan ubah repo at-farm-pwa lama.
+2. Upload isi folder KEUANGAN_PWA_GITHUB (index.html, manifest.webmanifest, sw.js, config.js, icon-192.png, icon-512.png) ke ROOT repository baru.
+3. GitHub: Settings > Pages > Deploy from a branch > main / (root) > Save.
+4. Buka alamat GitHub Pages BARU di Chrome Android (HTTPS). Setelah termuat, ketuk menu titik tiga > Instal aplikasi / Tambahkan ke layar utama.
+5. Jika pilihan Instal aplikasi tidak muncul, pastikan Pages terbit, manifest dapat dibuka, ikon terakses, SW aktif, dan gunakan Chrome Android terbaru.
+
+CATATAN PENTING
+- Halaman GitHub Pages memuat Apps Script melalui iframe; jika app Apps Script membutuhkan login/izin khusus, iframe bisa gagal. Uji link /exec langsung secara terpisah.
+- Instalasi PWA tidak sama dengan APK. APK harus dibangun dari proyek Android Studio terpisah.
+- Jangan menimpa database atau deployment lama. config.js saat ini merujuk URL Apps Script KEUANGAN yang diberikan.
+- Jangan pindah semua file APPS_SCRIPT ke folder GitHub PWA, karena Code.gs berjalan di Google Apps Script.
+- Koneksi dengan data lama hanya aman jika link/ID spreadsheet di Apps Script sudah dipastikan menuju sumber baru.
