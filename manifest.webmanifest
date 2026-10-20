@@ -1,29 +1,25 @@
 {
-  "id": "/at-farm-pwa/",
-  "name": "PASAR AT FARM 2",
-  "short_name": "PASAR AT FARM 2",
-  "description": "Aplikasi penjualan, kasir, laporan dan keuangan PASAR AT FARM 2",
-  "start_url": "./?v=10.49&source=pwa",
+  "id": "./?app=pasar-at-farm-2-keuangan",
+  "name": "PASAR AT FARM 2 — Keuangan & Penjualan",
+  "short_name": "AT FARM 2 Keuangan",
+  "description": "Aplikasi khusus keuangan dan penjualan PASAR AT FARM 2",
+  "start_url": "./?app=pasar-at-farm-2-keuangan",
   "scope": "./",
   "display": "standalone",
-  "display_override": [
-    "standalone"
-  ],
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#101828",
   "icons": [
     {
-      "src": "./icon-192.png?v=10.49",
+      "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "./icon-512.png?v=10.49",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
